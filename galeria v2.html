@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Galeria</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+    />
+    <style>
+      .image {
+        width: 60vw;
+        height: 60vh;
+        border: 1px black solid;
+        /* background-color: red; */
+
+        display: none;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .image1 {
+        background: url("https://cdn.pixabay.com/photo/2017/02/01/22/02/mountain-landscape-2031539_960_720.jpg");
+      }
+      .image2 {
+        background: url("https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_960_720.jpg");
+      }
+      .image3 {
+        background: url("https://cdn.pixabay.com/photo/2013/10/02/23/03/dawn-190055_960_720.jpg");
+      }
+      .show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image image1 show"></div>
+    <div class="image image2"></div>
+    <div class="image image3"></div>
+    <!-- tu do funckji show - tam stworzylismy paramter index i teraz bedziemy przypisywac do fn show musi przyjac index naszych divow -->
+    <button onclick="show(0)" class="button is-primary">1</button>
+    <button onclick="show(1)" class="button is-primary">2</button>
+    <button onclick="show(2)" class="button is-primary">3</button>
+    <script>
+      function show(index) {
+        // TROCHE TEORII:
+        // dodawanie klasy
+        // $("div").addClass("show"); //jquery
+        // document.querySelectorAll("div").classList.add("show"); //js
+        // usuwanie klasy
+        // $("div").removeClass("show"); //jquery
+        // document.querySelectorAll("div").classList.remove("show"); //js
+        // przelaczanie klasy
+        // $("div").toggleClass("show"); //jquery
+        // document.querySelectorAll("div").classList.toggle("show"); //js
+
+        //ukrywanie wszystkich elementów - to tylko ukrywa
+        document.querySelectorAll("div").forEach(function(element) {
+          element.classList.remove("show");
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Check weather in your city!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+    />
+    <style>
+      body {
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(172, 180, 185, 0.815);
+        /* background-image: url("img/landscape-day.svg"); */
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        /* opacity: 0.3; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .img {
+        width: 30%;
+      }
+      main {
+        opacity: 0.9;
+        display: flex;
+        flex-direction: column;
+        /* min-width: 50%; */
+        width: 30vw;
+        /* height: 30vh; */
+        position: relative;
+      }
+      main::before {
+        content: "";
+        position: absolute;
+        left: -20vw;
+        top: -25vh;
+        width: 30vw;
+        height: 30vh;
+        /* background-size: 150%; */
+        background: url("https://cdn.pixabay.com/photo/2016/11/21/03/56/landscape-1844227_960_720.png")
+          bottom center;
+        background-size: cover;
+        /* opacity:; */
+      }
+      button {
+        margin: 2rem 0;
+        align-self: flex-end;
+      }
+      input {
+        width: 100%;
+      }
+      .wynik {
+        background-color: white;
+        opacity: 0.9;
+        width: 100%;
+        height: 10vh;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="img"><img src="img/landscape-day.svg" alt="" /></div> -->
+    <main>
+      <input type="text" class="input" placeholder="Type english named city:" />
+      <button class="button is-primary">Find</button>
+      <div class="wynik"></div>
+    </main>
+    <script>
+      // BARDZO WAZNA JEST KOLEJNOSC BO INACZEJ LOC BY NIE BYL WIDZIANY
+      //   znajdz button
+      let btn = document.querySelector("button");
+      //znajdz input
+      let input = document.querySelector("input");
+
+      btn.onclick = function() {
+        var loc = input.value; //loc musi byc wewnatrz funkcji
+        // var loc = input.value.trim; //obcina biale znaki i nie mozna tez szukac bialych znakow bo ich nie bedzie. NIEDZIALA. DODAC TEZ IFA
+        // przypisz input do loca
+
+        //___________________________________
+        //FUNKCJA Z ktorej korzystamy wewnatrz fetcha by nie bylo ileś miejsc po przecinku - wynik
+        function calculate(kelvin) {
+          return Math.floor(kelvin - 272.15);
+        }
+        //___________________________________
+        //wykonaj fetch zmieniajac zmienna loc
+
+        fetch(
+          "https://api.openweathermap.org/data/2.5/weather?q=" +
+            loc +
+            "&appid=ae76d0efed32d9f29c4d54a5738b80ca"
+        )
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(myJson) {
+            //___________________________________________________
+            document.querySelector(
+              ".wynik"
+            ).innerText = `temperatura w  ${loc} ${calculate(
+              myJson.main.temp
+            )} C.`; //teraz w body liczy nam celsiusz a w kosoli kelwiny. gdzies w api tego openweather zmienia sie ustawienie by bylo celciusze
+            //____________________________________________________
+            if (myJson.main.temp < 0) {
+              document.querySelector("body").style.backgroundImage =
+                "url('https://cdn.pixabay.com/photo/2013/07/13/11/45/seasons-158601_960_720.png')";
+            } else {
+              document.querySelector("body").style.backgroundImage =
+                "url('https://cdn.pixabay.com/photo/2013/07/13/11/45/seasons-158601_960_720.png')";
+            }
+          });
+      };
+
+      //Trigger a Button Click on Enter -- additional option.
+      input.addEventListener("keyup", function(event) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+          // Trigger the button element with a click
+          btn.onclick();
+        }
+      });
+
+      //calosc jest na stackblitz.com/@medi71   trzbea dodac obsluche bledow przez kody 200 - poprawny , 404 zly . wszystkie powyzej 400 sa zle
+    </script>
+  </body>
+</html>

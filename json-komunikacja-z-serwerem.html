@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let obiekt = {
+        a: "hej",
+        b: [1, 2, 3],
+        c: {
+          one: 1,
+          two: 2
+        }
+      };
+
+      //   let obiektString = JSON.stringify(obiekt);
+      //zwraca nam w formacie json : "{"a":"hej","b":[1,2,3],"c":{"one":1,"two":2}}"
+
+      //   let ObiektJS = JSON.parse(obiektString);
+      //zwraca spowrotem obiekt, tyko trzeba podac obiekt po stringify
+
+      //openweathermap.org  - apka gdzie mozna pobrac aktualna pogode za darmo do 60 razy na minute. trzeba sie zalgowaac sciagnać key i go używać. przez pierwsza godzine nie dziala. w zakladce API pisze jak
+
+      //   swapi.co   server z ktorego mozemy pobierac dane - API(interfejs informatyczny), na nim mozemy pracowac w celach dydaktycznych . np. swapi.co/api/people/1 i tam mamy plik jsona z danymi tutaj np w star wars.
+
+      //   pokeAPI podobne - pokeapi.co
+
+      //   bedziemy korzystac z tego pliku danych:
+      // https://api.openweathermap.org/data/2.5/weather?q=Warsaw&appid=ae76d0efed32d9f29c4d54a5738b80ca
+
+      // w tym adresie url jest API id  i to ze jest to zapytanie o pogode i ze w warsaw, mozemy szukac innych miast po angielskich nazwach. w domu mozemy sobie zrobic wlasne api id i przekleic
+
+      //w jquey robi sie to tak:
+      //   (jezeli bede testoewal to wstawic link do jq)
+      //   $.fn.jquery  - on w consoli pokazuje ci czy jquery chodzi
+      //   $.get(
+      //     "https://api.openweathermap.org/data/2.5/weather?q=Warsaw&appid=ae76d0efed32d9f29c4d54a5738b80ca"
+      //   ).done(function(response) {
+      //     console.log("odpowiedz z api", response);
+      //   });
+      //COS NIE DZIALA
+
+      //_____________________________________________
+      //   CZYSTY JS - FETCH API (caniuse - nie jest wspierana wszedzie )
+      //  https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+      //szablon ze strony powyzej:
+      //   fetch(
+      //     "https://api.openweathermap.org/data/2.5/weather?q=Warsaw&appid=ae76d0efed32d9f29c4d54a5738b80ca"
+      //   )
+      //     .then(function(response) {
+      //       return response.json(); //w fetchu dajemy link z ktorego ciagniemy . tu mowimy zeby zamienil ta odpowiedz  na plik .json
+      //     })
+      //     .then(function(myJson) {
+      //       console.log(myJson); //a tu pokazujemy by pokazal w konsoli
+      //     });
+
+      //_______________________________________________kolejny przyklad
+      //   fetch(
+      //     "https://api.openweathermap.org/data/2.5/weather?q=Warsaw&appid=ae76d0efed32d9f29c4d54a5738b80ca"
+      //   )
+      //     .then(function(response) {
+      //       return response.json(); //w fetchu dajemy link z ktorego ciagniemy . tu mowimy zeby zamienil ta odpowiedz  na plik .json
+      //     })
+      //     .then(function(myJson) {
+      //       console.log(myJson.main.temp); //a tu pokazujemy by pokazal w konsoli temperature ktora akurat znajduje sie w obiekcie przy property main - czyli odwolujemy sie do konkretnej komorki obiektu
+      //     });
+      //__________________________________________wrzucamy to w dom:
+
+      //   fetch(
+      //     "https://api.openweathermap.org/data/2.5/weather?q=Warsaw&appid=ae76d0efed32d9f29c4d54a5738b80ca"
+      //   )
+      //     .then(function(response) {
+      //       return response.json();
+      //     })
+      //     .then(function(myJson) {
+      //       console.log(myJson.main.temp);
+
+      //       document.querySelector("div").innerText =
+      //         "temperatura w Berlinie " + myJson.main.temp + " K";
+      //     });
+
+      //_____________________________________________________
+      //   fetch("https://swapi.co/api/people/1")
+      //     .then(function(response) {
+      //       return response.json();
+      //     })
+      //     .then(function(myJson) {
+      //       console.log(myJson); //loguje teraz do kosoli luka skywalkera
+      //     });
+
+      //______________________________________________________-
+      //   dokumentacja do tego api : https://openweathermap.org/forecast5
+      //zadanie domowe zrobi z tym forecast 5 dniowym  : taka data, taka temperatura.
+      //   fetch(
+      //     "https://api.openweathermap.org/data/2.5/forecast?q=Warsaw&appid=ae76d0efed32d9f29c4d54a5738b80ca"
+      //   )
+      //     .then(function(response) {
+      //       return response.json();
+      //     })
+      //     .then(function(myJson) {
+      //       console.log(myJson); //loguje teraz 5 dni pogody
+      //     });
+      //_________________________________________
+      let loc = "berlin"; //tym razem dajemy zmienna loc ktora wywalamy przez fetcha. tą zmienna za pomoca konkatenacji dodajemy do linku tak jakbysmy kleili stringi i zmienną. i potem za pomoca tego bedziemy mogli bardziej czarowac bo za pomoca np prompta moglibysmy wpisac stringa do zmiennej i znalezx temperature.
+
+      //mozna by tez zmieniac template w zaleznosci od tego czy dawalibysmy forecast czy weather w linku. i wtedy dac ifa i dac inny DOM - tzn inne buttony i wyswietlenia.
+
+      //   fetch(
+      //     "https://api.openweathermap.org/data/2.5/weather?q=" +
+      //       loc +
+      //       "&appid=ae76d0efed32d9f29c4d54a5738b80ca"
+      //   )
+      //     .then(function(response) {
+      //       return response.json();
+      //     })
+      //     .then(function(myJson) {
+      //       console.log(`temperatura w  ${loc} ${myJson.main.temp} K.`);
+      //       document.querySelector("div").innerText = `temperatura w  ${loc} ${
+      //         myJson.main.temp
+      //       } K.`;
+      //     });
+      //____________________________________dodajemy funkcje by liczyla celciusze z kelwina
+
+      function calculate(kelvin) {
+        return Math.ceil(kelvin - 272.15); //dodatkowo wykorzystuje metode mateematyczna ceil by zaokragli w gore wynik.
+
+        // Math.ceil(1.3) //2 zaokragla w gore
+        // Math.floor(1.3) //1 zaokragla w dol
+      }
+
+      fetch(
+        "https://api.openweathermap.org/data/2.5/weather?q=" +
+          loc +
+          "&appid=ae76d0efed32d9f29c4d54a5738b80ca"
+      )
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(myJson) {
+          if (myJson.cod === 200) {
+            document.querySelector(
+              "div"
+            ).innerText = `Temperatura w  ${loc} ${calculate(
+              myJson.main.temp
+            )} C.`; //teraz w body liczy nam celsiusz a w kosoli kelwiny. gdzies w api tego openweather zmienia sie ustawienie by bylo celciusze
+          } else {
+            alert(myJson.message);
+          }
+        });
+      //calos
+    </script>
+  </body>
+</html>
