@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Check weather in your city!</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
-    />
+
     <link rel="stylesheet" href="check-weather.css" />
   </head>
   <body>
-    <div class="img"></div>
     <main>
       <input type="text" class="" placeholder="Type english named city:" />
       <button class="">Find</button>
       <div class="wynik"></div>
     </main>
+    <div class="img"></div>
+
     <script>
       // _____________________background image depends what time is it - start
       let currentHour = new Date();
@@ -46,8 +44,8 @@
       let input = document.querySelector("input");
       let img = document.querySelector(".img");
       btn.onclick = function() {
-        var loc = input.value; //loc musi byc wewnatrz funkcji
-        // var loc = input.value.trim; //obcina biale znaki i nie mozna tez szukac bialych znakow bo ich nie bedzie. NIEDZIALA. DODAC TEZ IFA
+        var loc = input.value.trim(); //loc musi byc wewnatrz funkcji
+        // var loc = input.value.trim(); //obcina biale znaki i nie mozna tez szukac bialych znakow bo ich nie bedzie. NIEDZIALA. DODAC TEZ IFA
         // przypisz input do loca
 
         //___________________________________
@@ -81,14 +79,14 @@
             //____________________________________________________
 
             if (calculate(myJson.main.temp) < 0) {
-              img.style.backgroundPosition = "-300px top";
+              img.style.backgroundPosition = "-900px top";
             } else if (
               calculate(myJson.main.temp) >= 0 &&
               calculate(myJson.main.temp) <= 18
             ) {
               img.style.backgroundPosition = "left top";
             } else if (calculate(myJson.main.temp) >= 18) {
-              img.style.backgroundPosition = "-100px top ";
+              img.style.backgroundPosition = "-300px top ";
             }
           });
       };
