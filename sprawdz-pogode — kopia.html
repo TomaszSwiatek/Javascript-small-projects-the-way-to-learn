@@ -14,8 +14,15 @@
   <body>
     <div class="img"></div>
     <main>
-      <input type="text" class="" placeholder="Type english named city:" />
-      <button class="">Find</button>
+      <form action="">
+        <input
+          type="text"
+          class="input is-primary"
+          placeholder="Type english named city:"
+        />
+        <button class="button is-primary">Find</button>
+      </form>
+
       <div class="wynik"></div>
     </main>
     <script>
@@ -36,7 +43,6 @@
       } else {
         alert("other hour");
       }
-
       // _____________________background image depends what time is it - end
 
       // BARDZO WAZNA JEST KOLEJNOSC BO INACZEJ LOC BY NIE BYL WIDZIANY
@@ -55,11 +61,6 @@
         function calculate(kelvin) {
           return Math.floor(kelvin - 272.15);
         }
-        //function to capitalize first letter of city.
-        function capitalizeFirstLetter(string) {
-          //wybiera pierwszy symbol z naszej zmiennej i podnosi do dużej litery. "+string.slice(1)" docina resztę tzn. np. arsaw ( z warsaw).
-          return string.charAt(0).toUpperCase() + string.slice(1);
-        }
         //___________________________________
         //wykonaj fetch zmieniajac zmienna loc
 
@@ -73,11 +74,13 @@
           })
           .then(function(myJson) {
             //___________________________________________________
+            console.log(myJson.main.temp);
+
             document.querySelector(
               ".wynik"
-            ).innerText = `Temperature in  ${capitalizeFirstLetter(
-              loc
-            )} is ${calculate(myJson.main.temp)} C.`; //teraz w body liczy nam celsiusz a w kosoli kelwiny. gdzies w api tego openweather zmienia sie ustawienie by bylo celciusze
+            ).innerText = `temperatura w  ${loc} ${calculate(
+              myJson.main.temp
+            )} C.`; //teraz w body liczy nam celsiusz a w kosoli kelwiny. gdzies w api tego openweather zmienia sie ustawienie by bylo celciusze
             //____________________________________________________
 
             if (calculate(myJson.main.temp) < 0) {
