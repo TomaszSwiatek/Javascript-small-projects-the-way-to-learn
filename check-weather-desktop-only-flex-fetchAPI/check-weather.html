@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Check weather in your city!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="check-weather.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <input type="text" class="" placeholder="Type english named city:" />
+      <button class="">Find</button>
+      <div class="wynik"></div>
+    </main>
+    <div class="img"></div>
+    <!-- modal on alert -->
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+          <div class="notification is-primary">
+              <button class="delete" ></button>
+              <p class="" id="paragraph"></p>
+              
+            </div>
+    </div>
+    <!-- scripts to handle events, fetch data from public API, etc. -->
+    <script src="main.js"></script>
+  </body>
+</html>
