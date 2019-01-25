@@ -1,0 +1,26 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+
+  .box {
+    max-width: 70vw;
+    box-shadow: 26px 25px 55px -4px rgb(65, 62, 65);
+    &:not(:first-child) {
+      margin-top: 2rem;
+    }
+  }
+
+  .custom-image {
+    width: 100%;
+    display: none;
+  }
+  /* style for all elements with exception (z pominieciem) of first element */
+  button:not(:first-child) {
+    margin-left: 1rem;
+  }
+}

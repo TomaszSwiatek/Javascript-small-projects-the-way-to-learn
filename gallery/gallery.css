@@ -1,0 +1,25 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+}
+body .box {
+  max-width: 70vw;
+  box-shadow: 26px 25px 55px -4px #413e41;
+}
+body .box:not(:first-child) {
+  margin-top: 2rem;
+}
+body .custom-image {
+  width: 100%;
+  display: none;
+}
+body button:not(:first-child) {
+  margin-left: 1rem;
+}
+
+/*# sourceMappingURL=gallery.css.map */

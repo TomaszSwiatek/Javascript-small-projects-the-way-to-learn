@@ -11,6 +11,30 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      background: rgba(242, 246, 248, 1);
+      background: linear-gradient(
+        to bottom,
+        rgba(242, 246, 248, 1) 0%,
+        rgba(216, 225, 231, 0.9) 23%,
+        rgba(18, 52, 71, 0.7) 66%,
+        rgba(224, 239, 249, 0.55) 100%
+      );
+    }
+    main {
+      width: 50vw;
+    }
+
+    /*# sourceMappingURL=gallery.css.map */
+  </style>
   <body>
     <!-- div.green*5 dodaje 5 razy.
     także jak chcemy znalezc jakas konkretna funkcje w vs code to ctrl + p i wpisujemy ">" -->
@@ -25,7 +49,7 @@
           ></textarea>
         </div>
       </div>
-
+      <ul></ul>
       <button class="button is-danger" id="save">Zapisz</button>
       <!-- onclick="alert`pokaż alert`"  - mozna do buttona dodac tu -->
       <!-- w jq mozna albo za pomoca element.on('eventname', function(){}) lub element.click(function(){}); -->
@@ -45,7 +69,12 @@
         let textarea = document.querySelector("textarea");
 
         btnSave.onclick = function() {
+          var li = document.createElement("li");
+          var ul = document.querySelector("ul");
+
           localStorage.setItem("notepad", textarea.value);
+          ul.appendChild(li);
+          li.innerText = localStorage.getItem("notepad");
         };
 
         //odczyt wartosci przy ladowaniu strony
@@ -53,6 +82,8 @@
         if (localStorage.getItem("notepad") !== null) {
           //i uzupelnienie textare odczytana trescia
           textarea.value = localStorage.getItem("notepad");
+          // li.innerText = textarea.value;
+          li.innerHTML = localStorage.getItem("notepad");
         }
         //teraz usuwamy tekst z textarea________________
         let btnClear = document.querySelector("#clear");
