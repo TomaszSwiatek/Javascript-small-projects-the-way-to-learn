@@ -16,18 +16,13 @@ document.addEventListener("DOMContentLoaded", function() {
       buttonRemove.setAttribute("class", "delete");
 
       var li = document.createElement("li");
-      // li.setAttribute("class", "display");
       li.textContent = localStorage.getItem(localStorage.key(i));
-      // li.appendChild(buttonRemove);
-      // list.appendChild(li).appendChild(buttonRemove);
       list.appendChild(li).insertBefore(buttonRemove, li.childNodes[0]);
-      // list.insertBefore(li, list.childNodes[0]);
     }
   }
   // this button only save to localStorage nad show in real time each item saved to local storage with varius id. (becouse of counter added to name, who is set to increase value each time after add new value. So becouse of it we added two local variable of li element.  )
   btnSave.onclick = function() {
     var firstItem = document.createElement("li");
-    // firstItem.setAttribute("class", "display");
     var textareaValue = textarea.value;
 
     if (textareaValue.trim() !== "") {
@@ -38,12 +33,11 @@ document.addEventListener("DOMContentLoaded", function() {
       var buttonRemove = document.createElement("button");
       var buttonText = document.createTextNode("x");
       buttonRemove.appendChild(buttonText);
-      // buttonRemove.setAttribute("class", "delete");
+      buttonRemove.setAttribute("class", "delete");
 
       firstItem.textContent = textarea.value;
       list
         .insertBefore(firstItem, list.childNodes[localStorage.length])
-        // .appendChild(firstItem)
         .insertBefore(buttonRemove, firstItem.childNodes[0]); //ma wstawić przed firstItem czyli każdym li.
 
       //zwieksza o 1 nazwę właściwości obiektu: note1, note2, note3 - tworzac serie wpisów
@@ -53,19 +47,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
   let btnClear = document.querySelector("#clear");
   btnClear.onclick = function() {
-    // localStorage.removeItem("notepad");
-    //wyczysc textarea
     textarea.value = "";
   };
+
   // let btnRemove = document.querySelector(".delete");
   // btnRemove.onclick = function() {
-  //   list.removeChild(li, buttonRemove);
-  //   localStorage.removeItem("note" + localStorage.length);
+  //   item.setAttribute("class", "is-hidden");
   // };
-
-  let btnRemove = document.querySelector(".delete");
-  btnRemove.onclick = function() {
-    // var list = document.getElementById("myList"); // Get the <ul> element with id="myList"
-    this.parentElement.setAttribute("class", "is-hidden");
-  };
+  //remove each item on click on delete button added to each item
+  $("ul").on("click", "button", function(e) {
+    e.preventDefault();
+    $(this)
+      .parent()
+      .remove();
+  });
 }); //end of domcontentloaded
