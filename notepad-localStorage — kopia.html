@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Notepad my own</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+    />
+  </head>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      background: rgba(242, 246, 248, 1);
+      background: linear-gradient(
+        to bottom,
+        rgba(242, 246, 248, 1) 0%,
+        rgba(216, 225, 231, 0.9) 23%,
+        rgba(18, 52, 71, 0.7) 66%,
+        rgba(224, 239, 249, 0.55) 100%
+      );
+    }
+    main {
+      width: 50vw;
+    }
+
+    /*# sourceMappingURL=gallery.css.map */
+  </style>
+  <body>
+    <!-- div.green*5 dodaje 5 razy.
+    także jak chcemy znalezc jakas konkretna funkcje w vs code to ctrl + p i wpisujemy ">" -->
+    <!-- skrót - :html.5 -->
+    <main>
+      <div class="field">
+        <div class="control">
+          <textarea
+            class="textarea is-danger"
+            rows="10"
+            placeholder="Wpisz coś w pole tekstowe"
+          ></textarea>
+        </div>
+      </div>
+      <ul id="list"></ul>
+      <button class="button is-danger" id="save">Zapisz</button>
+      <!-- onclick="alert`pokaż alert`"  - mozna do buttona dodac tu -->
+      <!-- w jq mozna albo za pomoca element.on('eventname', function(){}) lub element.click(function(){}); -->
+      <!-- w domie mamy keyboardEventy i mouseEvent - taka grupa eventów -->
+      <button class="button is-primary" id="clear">Wyczyść</button>
+    </main>
+    <script>
+      // this program each time in for loop read / get data (strings) from localStorage when site is reloaded.
+      document.addEventListener("DOMContentLoaded", function() {
+        var btnSave = document.querySelector("#save");
+        var textarea = document.querySelector("textarea");
+        var list = document.querySelector("#list");
+        var counter = localStorage.length + 1;
+
+        // get the loop for localStorage data ( it is an array / obj)
+        for (var i = 0; i < localStorage.length; i++) {
+          // we only read our notes from storage
+          if (localStorage.key(i).indexOf("note") !== -1) {
+            // create remove button ( then we will add it to each item)
+            var buttonRemove = document.createElement("button");
+            var buttonText = document.createTextNode("x");
+            buttonRemove.appendChild(buttonText);
+            buttonRemove.setAttribute("class", "delete");
+            // buttonRemove.onclick = function() {
+            //   list.removeChild(li, buttonRemove);
+            //   localStorage.removeItem("note" + localStorage.length);
+            // };
+
+            var li = document.createElement("li");
+            li.textContent = localStorage.getItem(localStorage.key(i));
+            // li.appendChild(buttonRemove);
+            list.appendChild(li).appendChild(buttonRemove);
+          }
+        }
+        // this button only save to localStorage nad show in real time each item saved to local storage with varius id. (becouse of counter added to name, who is set to increase value each time after add new value. So becouse of it we added two local variable of li element.  )
+        btnSave.onclick = function() {
+          var firstItem = document.createElement("li");
+          var textareaValue = textarea.value;
+
+          // create remove button ( then we will add it to each item)
+          var buttonRemove = document.createElement("button");
+          var buttonText = document.createTextNode("x");
+          buttonRemove.appendChild(buttonText);
+          buttonRemove.setAttribute("class", "delete");
+          // buttonRemove.onclick = function() {
+          //   list.removeChild(li, buttonRemove);
+          //   localStorage.removeItem("note" + localStorage.length);
+          // };
+
+          if (textareaValue.trim() !== "") {
+            //dodawaj za każdym razem do local storage - zwiekszajac nazwe wlasciwosci o 1 - tworzac kolejne itemy ktore mozna bedzie wyswietlic za pomocą pętli.
+            localStorage.setItem("note" + counter, textareaValue);
+
+            firstItem.textContent = textarea.value;
+            list.appendChild(firstItem).appendChild(buttonRemove);
+
+            //zwieksza o 1 nazwę właściwości obiektu: note1, note2, note3 - tworzac serie wpisów
+            counter++;
+          }
+        };
+
+        let btnClear = document.querySelector("#clear");
+        btnClear.onclick = function() {
+          // localStorage.removeItem("notepad");
+          //wyczysc textarea
+          textarea.value = "";
+        };
+        // let btnRemove = document.querySelector(".delete");
+        // btnRemove.onclick = function() {
+        //   list.removeChild(li, buttonRemove);
+        //   localStorage.removeItem("note" + localStorage.length);
+        // };
+      }); //end of domcontentloaded
+    </script>
+  </body>
+</html>
