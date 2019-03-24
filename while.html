@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="showMeWhatUCan"></div>
+    <div class="div2"></div>
+    <script>
+      //first way to show something from each loop:
+      //   let number = 0;
+      //   let table = [];
+      //   while (number < 100) {
+      //     table.push(number);
+      //     let div2 = document.querySelector(".div2").innerHTML;
+      //     number++;
+
+      //     console.log(`${number}`);
+      //   }
+      //   let div = (document.querySelector("#showMeWhatUCan").innerHTML = table);
+
+      //second way to show something from each loop:
+      let number = 0;
+      let table = [];
+      let div2 = document.querySelector(".div2");
+      while (number < 100) {
+        let li = document.createElement("li");
+        let textLi = document.createTextNode(number);
+        li.appendChild(textLi);
+        div2.appendChild(li);
+        number++;
+
+        console.log(`${String(number)}`);
+      }
+    </script>
+  </body>
+</html>
