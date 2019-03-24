@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.core.min.js"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: hsl(212, 90%, 60%)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div id="app"></div>
+    <script>
+        const p = document.createElement('p');
+        const app = document.querySelector('#app');
+
+        // tradycyjne dodawanie
+        // p.innerHTML = 'digi digi';
+        // app.appendChild(p);
+        //ale jak jest wiecej to wszystko trzeba tak meczyc, wiec mozna:
+        //w ten sposob nie odwolujemy sie kilkanascie razy bezposrednio do domu co zwalnia aplikacje
+        const fragment = document.createDocumentFragment();
+        const box = document.querySelector('.box');
+        //warto to tutaj zcatchować by nie robic tego w petli , a to ze to juz przypiszemy do el to nic bo dopiero fragment przypisuje calosc.
+        const boxWidth = box.offsetWidth;
+
+        for (let i = 0; i < 50; i++) {
+            el = document.createElement('p');
+            el.innerHTML = `here we are ${i + 1} Lorem ipsum dolor, sit amet `;
+            el.style.width = boxWidth + 'px';
+            fragment.appendChild(el);
+        }
+
+        //fragment sie stworzyl w petli i dodal sobie wszystkie p zamiast 50 razy odowolywac sie do dom i po wyjsciu z petli mozemy ten fragment dodac raz do dom.
+        app.appendChild(fragment);
+
+        // ------------------------------------------------------------------
+        //teraz bedzie o debounce
+        //wrzucamy tak funkcje debounce by zamienic ja zamiast funkcji anonimowej. jezeli zagniezdzilibysmy to standardowo w funkcji anonimowej to nie zadzialaloby to.
+        document.addEventListener('scroll',
+
+            _.debounce(() => {
+                console.log(`skroluje w pionie `, scrollY)
+            }
+                , 100
+            )
+        )
+        //------------------------------koniec debounceowania
+        //teraz tworzenie animacji w js za pomoca requestAnimationFrame();
+
+        let counter = 0;
+        const animation = () => {
+            //funkcja dziala tak: za kazdym razem dodaje jeden, i tym samym w drugiej lini pozycja translateY w px zwieksza sie o jeden. sama linia z requestAnimationFrame czyli wbudowana metodą w paramsach mowi jaka funkcje puscic teraz - a ma dac ta sama i tak do infinity.
+            counter++;
+            box.style.transform = 'translateY(' + counter + 'px)';
+
+            requestAnimationFrame(animation);
+        }
+        animation();
+//koniec animacji w js
+    </script>
+</body>
+
+</html>
