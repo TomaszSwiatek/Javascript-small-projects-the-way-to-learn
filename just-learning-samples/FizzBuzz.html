@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // program shows Buzz when number is divisible by  5 and fizz when number is divisible by 3 and FizzBuzz when number is both divisible by 3 and 5. first if statement have to be on first place (fizzBuzz).
+      for (let counter = 1; counter <= 100; counter++) {
+        let result = counter;
+        if (counter % 3 == 0 && counter % 5 == 0) {
+          result = "FizzBuzz";
+        } else if (counter % 5 == 0) {
+          result = "Buzz";
+        } else if (counter % 3 == 0) {
+          result = "Fizz";
+        } else {
+          result = counter;
+        }
+        console.log(result);
+      }
+
+      //shows which numbers are divisible only by 3 - to see is any number divisible by 3 and 5. - > there are for example 30 / 15 and the others.
+      //   for (let i = 1; i <= 100; i++) {
+      //     if (i % 3 == 0) {
+      //       console.log(i);
+      //     }
+      //   }
+    </script>
+  </body>
+</html>

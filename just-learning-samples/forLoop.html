@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   let counter;
+      //   let result = 1;
+
+      //   for (counter = 0; counter < 10; counter++) {
+      //     result = result * 2;
+      //   }
+      //   console.log(result); // 1024  - pierwiastkowanie / roots 2*10
+
+      //breaking out of the loop - there are 2 ways to do that: end of statement i.e. counter is no longer smaller than 10, or break KEYWORD.
+
+      for (var current = 18; ; current++) {
+        console.log(current); //18, 19, 20, 21 - so counts only to 21 where number is equaly divisible by 7. Note that we havent provided the condition.
+
+        if (current % 7 == 0) {
+          break;
+        }
+      }
+    </script>
+  </body>
+</html>
