@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="">
+      <input type="text" id="user-name" />
+    </form>
+    <div id="message">message</div>
+    <script>
+      let userName = document.querySelector("#user-name");
+
+      function checkUserName(minLength) {
+        let message = document.querySelector("#message");
+
+        userName.value.length < minLength
+          ? (message.textContent = "Write at least 5 characters")
+          : (message.textContent = "");
+      }
+      //blur is an type of event when we leave for example input / teaxtarea. // to pass an argument we had to close named function in anonymous function. Why? becouse normally we cant give bracets after  function name becouse function have to be called when event is called not when interpreter reads code first time when site is executed.
+      userName.addEventListener("blur", function() {
+        checkUserName(5);
+      });
+    </script>
+  </body>
+</html>
