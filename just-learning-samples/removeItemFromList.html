@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- ul>li{todo-$}*10   : emmet shortcut to create something like below -->
+    <ul id="todos">
+      <li>todo-1 <button>delete</button></li>
+      <li>todo-2 <button>delete</button></li>
+      <li>todo-3 <button>delete</button></li>
+      <li>todo-4 <button>delete</button></li>
+      <li>todo-5 <button>delete</button></li>
+      <li>todo-6 <button>delete</button></li>
+      <li>todo-7 <button>delete</button></li>
+      <li>todo-8 <button>delete</button></li>
+      <li>todo-9 <button>delete</button></li>
+      <li>todo-10 <button>delete</button></li>
+    </ul>
+    <script>
+      const deleteButtons = document.querySelectorAll("#todos li button"); //we can use const even if we remove later items. const is about only a reference, not a content
+      deleteButtons.forEach(item => {
+        item.addEventListener("click", () => {
+          //   console.log(event.target.textContent); //shows content in cl on click // if we want other string than "event" we have to write in params, so: if "e", we have to put it into params and then we can write e.target.textContent - and ll do the same.
+          //   event.target.parentNode.remove(); //we type parent of button so - li item to delete.
+          event.target.parentNode.style.textDecoration = "line-through"; //we can also do some style instead of
+        });
+      });
+    </script>
+  </body>
+</html>

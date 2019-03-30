@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const counter = () => {
+        let number = 0;
+        function count() {
+          number++;
+          document.body.textContent = `${number} sekund`;
+        }
+        return count;
+      };
+
+      //   const siteCounter = counter();
+      //   setInterval(siteCounter, 1000); //albo tak bez nawiasow
+
+      setInterval(counter(), 1000); //albo nazwa zmiennej ktora wywolujemy bezposrednio z nawiasami.
+    </script>
+  </body>
+</html>

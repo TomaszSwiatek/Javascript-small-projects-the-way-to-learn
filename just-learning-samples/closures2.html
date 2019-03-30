@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   let number = 0;
+
+      //   document.addEventListener("click", () => {
+      //     number++;
+      //     document.body.textContent = `licznik wynosi w tej chwili: ${number}`;
+      //   });
+      //____________________________________
+
+      //   function x() {
+      //     let number = 69;
+      //     function y() {
+      //       console.log(number);
+      //     }
+      //     return y; //in this way we return a function - without brackets.
+      //   }
+
+      //   const example = x();
+
+      //   example(); //in this way we call the function assigned to variable ( constant)
+      //__________________________________________
+      //   function add() {
+      //     let num = 0;
+      //     num++;
+      //     function count() {
+      //       return num;
+      //     }
+      //     return count;
+      //   }
+
+      //   document.addEventListener("click", add);
+      //   console.log(add());
+
+      //__________________________________________
+
+      //   const add = (start = 0) => {
+      //     let number = start; //przypisujemy do zmiennej parametr z defaultowymi ustawieniami ktore jednak moga byc inne - jak w scss.
+      //     return () => {
+      //       number++;
+      //       document.body.textContent = `teraz licznik wynosi: ${number}`;
+      //     };
+      //   };
+
+      //   //   const counter = add();
+
+      //   document.addEventListener("click", add(10));
+
+      //_________________________________________
+
+      const user = (name = "", age) => {
+        userAge = age;
+        userName = name;
+        function buyBeer() {
+          console.log(
+            `${userName} ${
+              userAge >= 18
+                ? "możesz kupić sobie jednego browarka"
+                : "nie masz jeszcze 18 lat i możesz pić tylko mleko"
+            }`
+          );
+        }
+        return buyBeer;
+      };
+
+      const tomek = user("aga");
+      tomek();
+    </script>
+  </body>
+</html>

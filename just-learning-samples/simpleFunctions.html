@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // power function
+      const power = function(base, exponent) {
+        let result = 1;
+        for (let counter = 0; counter < exponent; counter++) {
+          result *= base;
+        }
+        return result;
+      };
+      console.log(power(3, 10)); //3 to power of 10 -> 3^10
+      //__________________________________________________
+    </script>
+  </body>
+</html>

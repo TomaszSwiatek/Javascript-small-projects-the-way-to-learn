@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- ul>li{todo-$}*10   : emmet shortcut to create something like below -->
+    <ul id="todos">
+      <li data-key="1">todo-1 <button data-key="1">delete</button></li>
+      <li data-key="2">todo-2 <button data-key="2">delete</button></li>
+      <li data-key="3">todo-3 <button data-key="3">delete</button></li>
+      <li data-key="4">todo-4 <button data-key="4">delete</button></li>
+      <li data-key="5">todo-5 <button data-key="5">delete</button></li>
+      <li data-key="6">todo-6 <button data-key="6">delete</button></li>
+      <li data-key="7">todo-7 <button data-key="7">delete</button></li>
+      <li data-key="8">todo-8 <button data-key="8">delete</button></li>
+      <li data-key="9">todo-9 <button data-key="9">delete</button></li>
+      <li data-key="10">todo-10 <button data-key="10">delete</button></li>
+    </ul>
+    <script>
+      const deleteButtons = document.querySelectorAll("#todos li button"); //we can use const even if we remove later items. const is about only a reference, not a content
+      deleteButtons.forEach(item => {
+        item.addEventListener("click", () => {
+          const index = event.target.dataset.key; //shows number of data-key attribute each item we click (from 1 - 10 in this example)
+          const dataKeyItem = document.querySelector(`li[data-key="${index}"]`); //simply selektor with dynamic index which we choose by reference one line higher.
+
+          dataKeyItem.remove();
+        });
+      });
+    </script>
+  </body>
+</html>
