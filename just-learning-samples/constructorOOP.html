@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // def. constructor
+      const Vegetable = function(name, color, eat) {
+        //robimy to za pomoca starego zapisu z es5, nie mozemy uzyc arrow functions
+        this.name = name;
+        this.color = color;
+        this.eat = function() {
+          console.log(this.name + " omnomnom i'm so delacious.");
+        };
+      };
+
+      const carrot = new Vegetable("carrot", "red"); //instance of obj vegetable.
+      const onion = new Vegetable("onion", "yellow"); //instance of object vegetable.
+    </script>
+  </body>
+</html>
