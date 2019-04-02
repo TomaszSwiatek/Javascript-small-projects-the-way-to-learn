@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>Am i your this?</button>
+    <script>
+      let btn = document.querySelector("button");
+
+      // btn.addEventListener("click", () => {
+      //   console.log(`this is this from arrow function: ${this}`);//yes it is reference to window object! - se general object.
+      // });
+
+      // if we want reference to btn we have to use es5 anonymous function syntax:
+      btn.addEventListener("click", function() {
+        console.log(`this is this from arrow function: ${this}`); //at now it is HTMLButtonElement ! so ur btn.!
+      });
+    </script>
+  </body>
+</html>

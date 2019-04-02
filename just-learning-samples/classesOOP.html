@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Animal {
+        //classes consist only from methods:
+        constructor(name, species) {
+          this.name = name;
+          this.species = species;
+          this.children = [];
+          // this.eat = function() {
+          //   console.log(`I'm ${this.name} and i like to eat, omnomonom.`); //we can do like this but when we want transform method to prototype we have to do like below
+          // };
+        }
+        addChildren(...args) {
+          this.children.push(...args);
+        }
+        eat() {
+          console.log(`I'm ${this.name} and i like to eat, omnomonom.`); //this is method in prototype of class.
+        }
+        play() {
+          console.log(`Hi i'm ${this.species} and i like to play`);
+        }
+        showChildren() {
+          console.log(`My children are ${this.children}`);
+        }
+      }
+
+      // we initialize new instance of class like in constructor case:
+      const chinchilla = new Animal("Barnaba", "chinchillas");
+      const dog = new Animal("skiper", "dog");
+    </script>
+  </body>
+</html>

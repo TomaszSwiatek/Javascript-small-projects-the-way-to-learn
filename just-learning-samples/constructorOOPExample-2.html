@@ -8,22 +8,59 @@
   </head>
   <body>
     <script>
-      const Animal = function(name) {
+      // OPTION WITHOUT PROTOTYPE - WORSE.
+      // const Animal = function(name) {
+      //   this.name = name;
+      //   this.children = [];
+      //   this.addChildren = newChild => {
+      //     this.children.push(newChild);
+      //   };
+      // };
+
+      // const chinchilla = new Animal("Szaras");
+
+      // chinchilla.addChildren("Białas");
+      // console.log(
+      //   `to jest nowy szynszyli obiekt: ${chinchilla.name} a jego dziecko to: ${
+      //     chinchilla.children
+      //   }`
+      // );
+
+      //OPTION WITH PROTOTYPE FOR CONSTRUCTOR METHODS:
+      const Animal = function(name, ...children) {
         this.name = name;
-        this.children = [];
-        this.addChildren = newChild => {
-          this.children.push(newChild);
-        };
+        this.children = [...children];
       };
 
-      const chinchilla = new Animal("Szaras");
+      //here we def. method for Animal constructor:
+      Animal.prototype.addChildren = function(...newChildren) {
+        //here have to be also es5 anonymous function
+        this.children.push(...newChildren);
+      };
 
-      chinchilla.addChildren("Białas");
-      console.log(
-        `to jest nowy szynszyli obiekt: ${chinchilla.name} a jego dziecko to: ${
-          chinchilla.children
-        }`
+      const chinchilla = new Animal(
+        "Bąbel",
+        "dziecko1",
+        "dziecko2",
+        "dziecko3"
       );
+
+      chinchilla.addChildren("dziecko4", "dziecko5", "dziecko6"); //becouse of use rest operator we can add one or MORE child.
+      //JS checks out firstly - is in constructor method called addChildren, if is not, then checks out prototype inner construtor and then finds out this method.
+
+      //now we add property to prototype, and this property will be available to each instance with this assigned value:
+      Animal.prototype.description = "All of this instances are animals.";
+
+      //AT NOW IN INSPECTOR WE SEE:
+      /*chinchilla
+          Animal {name: "Bąbel", children: Array(6)}
+          children: (6) ["dziecko1", "dziecko2", "dziecko3", "dziecko4", "dziecko5", "dziecko6"]
+          name: "Bąbel"
+          __proto__:
+          addChildren: ƒ (...newChildren)
+          description: "All of this instances are animals."
+          constructor: ƒ (name, ...children)
+          __proto__: Object*/
     </script>
   </body>
 </html>
